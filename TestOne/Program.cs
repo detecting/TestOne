@@ -10,8 +10,9 @@ namespace TestOne
 {
     internal class Program
     {
-        IWebDriver driver = new ChromeDriver();
+//        IWebDriver driver = new ChromeDriver();
         private string URL = "http://www.executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login";
+
         public static void Main(string[] args)
         {
         }
@@ -19,29 +20,28 @@ namespace TestOne
         [SetUp]
         public void Initial()
         {
-            driver.Navigate().GoToUrl(URL);
+            PropertiesCollection.driver = new ChromeDriver();
+            PropertiesCollection.driver.Navigate().GoToUrl(URL);
         }
 
         [Test]
         public void ExecuteTest()
         {
-            SeleniumSetMethods.SelectDropDown(driver,"TitleId","Ms.","Id");
-            SeleniumSetMethods.EnterText(driver,"Initial","executeautomation","Name");
+            SeleniumSetMethods.SelectDropDown(PropertiesCollection.driver, "TitleId", "Ms.", "Id");
+            SeleniumSetMethods.EnterText(PropertiesCollection.driver, "Initial", "executeautomation", "Name");
             /*
              * 
              */
-            string titleContent = SeleniumGetMethods.GetTextFromDdl(driver, "TitleId", "Id");
-            Console.WriteLine("title content: "+titleContent);
-            string initialVontent = SeleniumGetMethods.GetText(driver, "Initial", "Name");
-            Console.WriteLine("initial content: "+initialVontent);
-
-
+            string titleContent = SeleniumGetMethods.GetTextFromDdl(PropertiesCollection.driver, "TitleId", "Id");
+            Console.WriteLine("title content: " + titleContent);
+            string initialVontent = SeleniumGetMethods.GetText(PropertiesCollection.driver, "Initial", "Name");
+            Console.WriteLine("initial content: " + initialVontent);
         }
 
         [TearDown]
         public void ClearUp()
         {
-         //   driver.Close();
+            //   driver.Close();
         }
     }
 }
