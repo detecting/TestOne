@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using System.Management.Instrumentation;
 using System.Resources;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -27,14 +28,14 @@ namespace TestOne
         [Test]
         public void ExecuteTest()
         {
-            SeleniumSetMethods.SelectDropDown(PropertiesCollection.driver, "TitleId", "Ms.", "Id");
-            SeleniumSetMethods.EnterText(PropertiesCollection.driver, "Initial", "executeautomation", "Name");
+            SeleniumSetMethods.SelectDropDown("TitleId", "Ms.", PropertiesCollection.PropType.Id);
+            SeleniumSetMethods.EnterText("Initial", "executeautomation", PropertiesCollection.PropType.Name);
             /*
              * 
              */
-            string titleContent = SeleniumGetMethods.GetTextFromDdl(PropertiesCollection.driver, "TitleId", "Id");
+            string titleContent = SeleniumGetMethods.GetTextFromDdl("TitleId", PropertiesCollection.PropType.Id);
             Console.WriteLine("title content: " + titleContent);
-            string initialVontent = SeleniumGetMethods.GetText(PropertiesCollection.driver, "Initial", "Name");
+            string initialVontent = SeleniumGetMethods.GetText("Initial", PropertiesCollection.PropType.Name);
             Console.WriteLine("initial content: " + initialVontent);
         }
 

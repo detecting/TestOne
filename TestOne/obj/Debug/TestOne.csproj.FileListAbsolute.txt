@@ -10,3 +10,15 @@ C:\Users\hzha321\RiderProjects\TestOne\TestOne\bin\Debug\WebDriver.Support.dll
 C:\Users\hzha321\RiderProjects\TestOne\TestOne\bin\Debug\nunit.framework.pdb
 C:\Users\hzha321\RiderProjects\TestOne\TestOne\bin\Debug\nunit.framework.xml
 C:\Users\hzha321\RiderProjects\TestOne\TestOne\bin\Debug\WebDriver.Support.xml
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\TestOne.exe
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\TestOne.pdb
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\nunit.framework.dll
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\WebDriver.dll
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\WebDriver.Support.dll
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\nunit.framework.pdb
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\nunit.framework.xml
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\WebDriver.xml
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\bin\Debug\WebDriver.Support.xml
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\obj\Debug\TestOne.csprojResolveAssemblyReference.cache
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\obj\Debug\TestOne.exe
+C:\Users\hzha321\RiderProjects\ToNew\TestOne\obj\Debug\TestOne.pdb

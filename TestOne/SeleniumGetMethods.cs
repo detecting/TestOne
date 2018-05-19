@@ -7,16 +7,16 @@ namespace TestOne
 {
     public class SeleniumGetMethods
     {
-        public static string GetText(IWebDriver driver, string element, string elementType)
+        public static string GetText( string element, PropertiesCollection.PropType elementType)
         {
-            if (elementType == "Id")
+            if (elementType == PropertiesCollection.PropType.Id)
             {
-                return driver.FindElement(By.Id(element)).GetAttribute("value");
+                return PropertiesCollection.driver.FindElement(By.Id(element)).GetAttribute("value");
             }
 
-            if (elementType == "Name")
+            if (elementType == PropertiesCollection.PropType.Name)
             {
-                return driver.FindElement(By.Name(element)).GetAttribute("value");
+                return PropertiesCollection.driver.FindElement(By.Name(element)).GetAttribute("value");
             }
             else
             {
@@ -24,16 +24,16 @@ namespace TestOne
             }
         }
 
-        public static string GetTextFromDdl(IWebDriver driver, string element, string elementType)
+        public static string GetTextFromDdl( string element, PropertiesCollection.PropType elementType)
         {
-            if (elementType == "Id")
+            if (elementType == PropertiesCollection.PropType.Id)
             {
-                return new SelectElement(driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
+                return new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
             }
 
-            if (elementType == "Name")
+            if (elementType == PropertiesCollection.PropType.Name)
             {
-                return new SelectElement(driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
+                return new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
             }
             else
             {
