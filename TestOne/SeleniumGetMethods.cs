@@ -7,7 +7,7 @@ namespace TestOne
 {
     public class SeleniumGetMethods
     {
-        public static string GetText( string element, PropertiesCollection.PropType elementType)
+        /*public static string GetText( string element, PropertiesCollection.PropType elementType)
         {
             if (elementType == PropertiesCollection.PropType.Id)
             {
@@ -39,6 +39,16 @@ namespace TestOne
             {
                 return string.Empty;
             }
+        }*/
+
+        public static string GetText(IWebElement webElement)
+        {
+            return webElement.GetAttribute("value");
+        }
+
+        public static string GetTextFromDdl(IWebElement webElement)
+        {
+            return new SelectElement(webElement).AllSelectedOptions.SingleOrDefault().Text;
         }
     }
 }

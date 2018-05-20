@@ -12,7 +12,7 @@ namespace TestOne
         public IWebElement Initial { get; set; }
 
         [FindsBy(How = How.Id, Using = "FirstName")]
-        public IWebElement FirstName { get; set; }    
+        public IWebElement FirstName { get; set; }
 
         [FindsBy(How = How.Name, Using = "MiddleName")]
         public IWebElement MiddleName { get; set; }
@@ -27,10 +27,16 @@ namespace TestOne
 
         public void FillUserForm(string initial, string firstName, string middleName)
         {
-            Initial.SendKeys(initial);
+            //use the custome methods to set and get 
+            SeleniumSetMethods.EnterText(Initial, initial);
+            SeleniumSetMethods.EnterText(FirstName, firstName);
+            SeleniumSetMethods.EnterText(MiddleName,middleName);
+            SeleniumSetMethods.Click(BtnSave);
+
+            /*Initial.SendKeys(initial);
             FirstName.SendKeys(firstName);
             MiddleName.SendKeys(middleName);
-            BtnSave.Click();
+            BtnSave.Click();*/
         }
     }
 }
