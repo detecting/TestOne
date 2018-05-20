@@ -12,7 +12,10 @@ namespace TestOne
     internal class Program
     {
 //        IWebDriver driver = new ChromeDriver();
-        private string URL = "http://www.executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login";
+        private string LoginUrl = "http://www.executeautomation.com/demosite/Login.html";
+        private string userName = "execute";
+        private string password = "automation";
+            
 
         public static void Main(string[] args)
         {
@@ -22,19 +25,16 @@ namespace TestOne
         public void Initial()
         {
             PropertiesCollection.driver = new ChromeDriver();
-            PropertiesCollection.driver.Navigate().GoToUrl(URL);
+            PropertiesCollection.driver.Navigate().GoToUrl(LoginUrl);
         }
 
         [Test]
         public void ExecuteTest()
         {
             //initialize the page obj by calling its reference
-            EAPageObject page = new EAPageObject();
-            page.TxtInitial.Clear();
-            page.TxtInitial.SendKeys("executeautomation");
-            page.BtnSave.Click();
-            
-            
+            LoginPageObj loginPageObj = new LoginPageObj();
+            EAPageObject eaPageObject = loginPageObj.Login(userName,password);
+            eaPageObject.FillUserForm("initial","morgan","zhang");
 
 
             /*SeleniumSetMethods.SelectDropDown("TitleId", "Ms.", PropertiesCollection.PropType.Id);
@@ -51,7 +51,7 @@ namespace TestOne
         [TearDown]
         public void ClearUp()
         {
-            PropertiesCollection.driver.Close();
+//            PropertiesCollection.driver.Close();
         }
     }
 }
