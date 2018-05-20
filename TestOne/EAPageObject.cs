@@ -27,11 +27,18 @@ namespace TestOne
 
         public void FillUserForm(string initial, string firstName, string middleName)
         {
+            //扩展类的使用；
+            Initial.EnterText(initial);
+            FirstName.EnterText(firstName);
+            MiddleName.EnterText(middleName);
+            BtnSave.Click();
+            
+            
             //use the custome methods to set and get 
-            SeleniumSetMethods.EnterText(Initial, initial);
-            SeleniumSetMethods.EnterText(FirstName, firstName);
-            SeleniumSetMethods.EnterText(MiddleName,middleName);
-            SeleniumSetMethods.Click(BtnSave);
+//            SeleniumSetMethods.EnterText(Initial, initial);
+//            SeleniumSetMethods.EnterText(FirstName, firstName);
+//            SeleniumSetMethods.EnterText(MiddleName,middleName);
+//            SeleniumSetMethods.Click(BtnSave);
 
             /*Initial.SendKeys(initial);
             FirstName.SendKeys(firstName);
