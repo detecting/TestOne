@@ -28,21 +28,30 @@ namespace TestOne
         [Test]
         public void ExecuteTest()
         {
-            SeleniumSetMethods.SelectDropDown("TitleId", "Ms.", PropertiesCollection.PropType.Id);
+            //initialize the page obj by calling its reference
+            EAPageObject page = new EAPageObject();
+            page.txtInitial.Clear();
+            page.txtInitial.SendKeys("executeautomation");
+            page.btnSave.Click();
+            
+            
+
+
+            /*SeleniumSetMethods.SelectDropDown("TitleId", "Ms.", PropertiesCollection.PropType.Id);
             SeleniumSetMethods.EnterText("Initial", "executeautomation", PropertiesCollection.PropType.Name);
             /*
              * 
-             */
+             #1#
             string titleContent = SeleniumGetMethods.GetTextFromDdl("TitleId", PropertiesCollection.PropType.Id);
             Console.WriteLine("title content: " + titleContent);
             string initialVontent = SeleniumGetMethods.GetText("Initial", PropertiesCollection.PropType.Name);
-            Console.WriteLine("initial content: " + initialVontent);
+            Console.WriteLine("initial content: " + initialVontent);*/
         }
 
         [TearDown]
         public void ClearUp()
         {
-            //   driver.Close();
+            PropertiesCollection.driver.Close();
         }
     }
 }
