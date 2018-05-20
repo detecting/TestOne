@@ -30,9 +30,9 @@ namespace TestOne
         {
             //initialize the page obj by calling its reference
             EAPageObject page = new EAPageObject();
-            page.txtInitial.Clear();
-            page.txtInitial.SendKeys("executeautomation");
-            page.btnSave.Click();
+            page.TxtInitial.Clear();
+            page.TxtInitial.SendKeys("executeautomation");
+            page.BtnSave.Click();
             
             
 
