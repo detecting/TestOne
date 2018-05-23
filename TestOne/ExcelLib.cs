@@ -1,15 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
 using ExcelDataReader;
 using NUnit.Framework;
 
 namespace TestOne
 {
+    public class DataCollection
+    {
+        public int rowNumber { get; set; }
+        public string colName { get; set; }
+        public string colValue { get; set; }
+    }
+
+
     public class ExcelLib
     {
-        //read data from stream and parse to datatable
+//        read data from stream and parse to datatable
         public static DataTable ExcelToDataTable(string fileName)
         {
             //open file and return as stream
@@ -30,9 +40,8 @@ namespace TestOne
             DataTable resultTable = tableCollection["Sheet1"];
             return resultTable;
         }
-        
-        
-        List dataCol = new List();
+
+       static List<DataCollection> dataCol = new List<DataCollection>();
 
         public void PopulateInCollection(string fileName)
         {
@@ -72,13 +81,5 @@ namespace TestOne
                 return null;
             }
         }
-    }
-
-    
-    public class DataCollection
-    {
-        public int rowNumber { get; set; }
-        public string colName { get; set; }
-        public string colValue { get; set; }
     }
 }
