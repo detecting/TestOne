@@ -6,6 +6,7 @@ using NUnit.Framework;
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumFirst;
 
 namespace TestOne
 {
@@ -13,9 +14,9 @@ namespace TestOne
     {
 //        IWebDriver driver = new ChromeDriver();
         private string LoginUrl = "http://www.executeautomation.com/demosite/Login.html";
-        private string userName = "execute";
-        private string password = "automation";
-            
+        private string userName = "userName";
+        private string password = "passwd";
+
 
         public static void Main(string[] args)
         {
@@ -31,10 +32,16 @@ namespace TestOne
         [Test]
         public void ExecuteTest()
         {
+            ExcelLib.PopulateInCollection(@"C:\Users\hzha321\Desktop\data.xlsx");
             //initialize the page obj by calling its reference
             LoginPageObj loginPageObj = new LoginPageObj();
-            EAPageObject eaPageObject = loginPageObj.Login(userName,password);
-            eaPageObject.FillUserForm("initial","morgan","zhang");
+//            EAPageObject eaPageObject = loginPageObj.Login(ExcelLib.ReadData(1,userName),ExcelLib.ReadData(1,password));
+            var username = ExcelLib.ReadData(1, userName);
+            var pass=ExcelLib.ReadData(1, password);
+            
+            EAPageObject eaPageObject =
+                loginPageObj.Login(ExcelLib.ReadData(1, userName), ExcelLib.ReadData(1, password));
+            eaPageObject.FillUserForm("initial", "morgan", "zhang");
 
 
             /*SeleniumSetMethods.SelectDropDown("TitleId", "Ms.", PropertiesCollection.PropType.Id);

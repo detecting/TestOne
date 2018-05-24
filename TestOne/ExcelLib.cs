@@ -3,56 +3,59 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net;
-using ExcelDataReader;
-using NUnit.Framework;
+using System.Text;
+using System.Threading.Tasks;
+ using ExcelDataReader;
 
-namespace TestOne
+namespace SeleniumFirst
 {
-    public class DataCollection
+    class ExcelLib
     {
-        public int rowNumber { get; set; }
-        public string colName { get; set; }
-        public string colValue { get; set; }
-    }
 
-
-    public class ExcelLib
-    {
-//        read data from stream and parse to datatable
-        public static DataTable ExcelToDataTable(string fileName)
+        public class Datacollection
         {
-            //open file and return as stream
+            public int rowNumber { get; set; }
+            public string colName { get; set; }
+            public string colValue { get; set; }
+        }
+
+        private static DataTable ExcelToDataTable(string fileName)
+        {
+            //open file and returns as Stream
             FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
-            //CreateOpenXmlReader via ExcelReaderFactory
-            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-            //set the first row as collum name
-            var result = excelReader.AsDataSet(new ExcelDataSetConfiguration()
-            {
-                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                {
+            //Createopenxmlreader via ExcelReaderFactory
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream); //.xlsx
+            
+            //Set the First Row as Column Name
+            DataSet result = excelReader.AsDataSet(new ExcelDataSetConfiguration() {
+                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() {
                     UseHeaderRow = true
                 }
             });
-            //return as dataset
-            DataTableCollection tableCollection = result.Tables;
-            //store it in datatable
-            DataTable resultTable = tableCollection["Sheet1"];
+//            excelReader.IsFirstRowAsColumnNames = true;
+            //Return as DataSet
+//            DataSet result = excelReader.AsDataSet();
+            //Get all the Tables
+            DataTableCollection table = result.Tables;
+            //Store it in DataTable
+            DataTable resultTable = table["Sheet1"];
+
+            //return
             return resultTable;
         }
 
-       static List<DataCollection> dataCol = new List<DataCollection>();
+        static List<Datacollection> dataCol = new List<Datacollection>();
 
-        public void PopulateInCollection(string fileName)
+        public static void PopulateInCollection(string fileName)
         {
             DataTable table = ExcelToDataTable(fileName);
 
             //Iterate through the rows and columns of the Table
             for (int row = 1; row <= table.Rows.Count; row++)
             {
-                for (int col = 0; col <= table.Columns.Count; col++)
+                for (int col = 0; col < table.Columns.Count; col++)
                 {
-                    DataCollection dtTable = new DataCollection()
+                    Datacollection dtTable = new Datacollection()
                     {
                         rowNumber = row,
                         colName = table.Columns[col].ColumnName,
@@ -64,14 +67,14 @@ namespace TestOne
             }
         }
 
-        public string ReadData(int rowNumber, string columnName)
+        public static string ReadData(int rowNumber, string columnName)
         {
             try
             {
                 //Retriving Data using LINQ to reduce much of iterations
                 string data = (from colData in dataCol
-                    where colData.colName == columnName && colData.rowNumber == rowNumber
-                    select colData.colValue).SingleOrDefault();
+                               where colData.colName == columnName && colData.rowNumber == rowNumber
+                               select colData.colValue).SingleOrDefault();
 
                 //var datas = dataCol.Where(x => x.colName == columnName && x.rowNumber == rowNumber).SingleOrDefault().colValue;
                 return data.ToString();
@@ -83,3 +86,4 @@ namespace TestOne
         }
     }
 }
+
